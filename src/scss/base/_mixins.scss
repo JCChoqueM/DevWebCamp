@@ -36,7 +36,7 @@
   display: inline-block;
 
   &:hover {
-    background-color: darken($bgColor, 10%);
+    background-color: color.adjust($bgColor, $lightness: -10%);
     cursor: pointer;
   }
 }
@@ -65,5 +65,4 @@
   @include headings;
   margin: 6rem 0 3rem 0;
   text-align: center;
-  
 }
