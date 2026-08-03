@@ -164,6 +164,13 @@ img {
   width: 100%;
   height: auto;
 }
+h1,
+h2,
+h3 {
+  font-family: Outfit, sans-serif;
+  font-weight: 900;
+  margin: 2rem 0;
+}
 h1 {
   font-size: 4rem;
 }
@@ -176,13 +183,74 @@ h3 {
 .text-center {
   text-align: center;
 }
+[class$='__heading'] {
+  font-family: Outfit, sans-serif;
+  font-weight: 900;
+  margin: 2rem 0;
+  margin: 6rem 0 3rem;
+  text-align: center;
+}
 .auth {
   width: min(95%, 60rem);
   margin: 0 auto;
 }
-.auth__heading {
-  font-size: 3rem;
-}
 .auth__texto {
   font-size: 2rem;
+}
+.formulario {
+  display: flex;
+  flex-direction: column;
+}
+.formulario__campo {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+.formulario__label {
+  display: block;
+  font-size: 1.8rem;
+  color: #1a1b15cc;
+}
+.formulario__input {
+  padding: 1rem;
+  border: 1px solid rgb(69.2549019608%, 78.0392156863%, 86.8235294118%);
+  border-radius: 0.5rem;
+}
+.formulario__submit {
+  background-color: #007df4;
+  padding: 1.5rem 4rem;
+  color: #fff;
+  font-size: 1.8rem;
+  font-weight: 700;
+  border: none;
+  transition-property: background-color;
+  transition-duration: 0.3s;
+  text-align: center;
+  width: 100%;
+  display: inline-block;
+}
+.formulario__submit:hover {
+  background-color: #0063c1;
+  cursor: pointer;
+}
+.formulario__submit {
+  width: auto;
+  align-self: flex-start;
+}
+.acciones {
+  margin-top: 3rem;
+  display: flex;
+  justify-content: space-between;
+}
+.acciones__enlace {
+  color: #1a1b15;
+  font-size: 1.4rem;
+  font-weight: 300;
+}
+.header {
+  min-height: 60rem;
+  background-image:
+    url(/build/assets/grafico-CM6piRWh.svg), url(/build/assets/grafico-CM6piRWh.svg), linear-gradient(to right, #1a1b15, #1a1b1580),
+    url(/build/assets/header-BK-qPk7C.jpg);
 }

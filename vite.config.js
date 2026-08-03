@@ -14,7 +14,8 @@ const jsEntries = fg.sync([
     return entries;
 }, {});
 
-export default defineConfig({
+export default defineConfig(({ command }) => ({
+    base: command === 'build' ? '/build/' : '/',
     publicDir: false,
     plugins: [
         scssAutoIndex('src/scss'),
@@ -33,6 +34,7 @@ export default defineConfig({
     server: {
         host: '0.0.0.0',
         port: 5174,
+        origin: 'http://localhost:5174',
         watch: {
             usePolling: true,
             interval: 1500,
@@ -52,4 +54,4 @@ export default defineConfig({
             }
         }
     }
-});
+}));
