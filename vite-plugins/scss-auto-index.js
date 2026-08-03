@@ -12,7 +12,7 @@ function updateIndex(fileDir, fileName, action) {
 
         if (!content.includes(importLine)) {
             fs.appendFileSync(indexPath, importLine + '\n');
-            console.log(`[scss-auto-index] Añadido: ${importLine}`);
+            console.log(`[scss-auto-index] Añadido: ${importLine} (${fileDir})`);
         }
     }
 
@@ -27,11 +27,11 @@ function updateIndex(fileDir, fileName, action) {
             .trim();
 
         if (updated === '') {
-            fs.unlinkSync(indexPath);
-            console.log(`[scss-auto-index] Eliminado _index.scss vacío en ${fileDir}`);
+            fs.writeFileSync(indexPath, '');
+            console.log(`[scss-auto-index] _index.scss vacío en ${fileDir}`);
         } else {
             fs.writeFileSync(indexPath, updated + '\n');
-            console.log(`[scss-auto-index] Eliminado: ${importLine}`);
+            console.log(`[scss-auto-index] Eliminado: ${importLine} (${fileDir})`);
         }
     }
 }
@@ -66,63 +66,141 @@ function updateAppScss(scssAbsDir, folderName, action) {
     }
 }
 
+function ensureFolderIndex(folderAbsPath) {
+    const indexPath = path.join(folderAbsPath, '_index.scss');
+    if (!fs.existsSync(indexPath)) {
+        fs.writeFileSync(indexPath, '');
+        console.log(`[scss-auto-index] Creado _index.scss en ${folderAbsPath}/`);
+    }
+}
+
+function buildInitialDirSet(absDir) {
+    const dirs = new Set();
+
+    function walk(currentAbsPath, currentRelPath) {
+        if (!fs.existsSync(currentAbsPath)) return;
+
+        const entries = fs.readdirSync(currentAbsPath, { withFileTypes: true });
+        for (const entry of entries) {
+            if (!entry.isDirectory()) continue;
+
+            const relPath = currentRelPath ? `${currentRelPath}/${entry.name}` : entry.name;
+            dirs.add(relPath);
+            walk(path.join(currentAbsPath, entry.name), relPath);
+        }
+    }
+
+    walk(absDir, '');
+    return dirs;
+}
+
+// 🆕 NUEVO: Scanear una carpeta y agregar todos los archivos .scss al index
+function scanAndIndexFolder(folderAbsPath) {
+    try {
+        const entries = fs.readdirSync(folderAbsPath, { withFileTypes: true });
+        
+        for (const entry of entries) {
+            if (entry.isFile() && entry.name.endsWith('.scss') && entry.name !== '_index.scss') {
+                const fileName = entry.name.replace(/^_/, '').replace('.scss', '');
+                updateIndex(folderAbsPath, fileName, 'add');
+            }
+        }
+    } catch (err) {
+        console.error(`[scss-auto-index] Error scanning folder ${folderAbsPath}:`, err);
+    }
+}
+
 function watchDir(scssDir) {
     const absDir = path.resolve(process.cwd(), scssDir);
+    let knownDirs = buildInitialDirSet(absDir);
 
-    // Carpetas de primer nivel que ya existen al arrancar
-    let knownDirs = new Set(
-        fs.existsSync(absDir)
-            ? fs.readdirSync(absDir, { withFileTypes: true })
-                .filter(d => d.isDirectory())
-                .map(d => d.name)
-            : []
-    );
+    const pendingEvents = new Map();
+    const DEBOUNCE_DELAY = 100;
 
     fs.watch(absDir, { recursive: true }, (event, filename) => {
         if (!filename) return;
+        if (event !== 'rename') return;
 
-        const filePath = path.join(absDir, filename);
-        const isTopLevel = path.dirname(filename) === '.';
-
-        // --- Manejo de carpetas nuevas/eliminadas de primer nivel ---
-        if (event === 'rename' && isTopLevel) {
-            const name = filename;
-            const exists = fs.existsSync(filePath);
-            const isDir = exists && fs.statSync(filePath).isDirectory();
-
-            if (exists && isDir && !knownDirs.has(name)) {
-                // Carpeta nueva
-                knownDirs.add(name);
-
-                const indexPath = path.join(filePath, '_index.scss');
-                if (!fs.existsSync(indexPath)) {
-                    fs.writeFileSync(indexPath, '');
-                    console.log(`[scss-auto-index] Creado _index.scss en ${name}/`);
-                }
-
-                updateAppScss(absDir, name, 'add');
-            } else if (!exists && knownDirs.has(name)) {
-                // Carpeta eliminada
-                knownDirs.delete(name);
-                updateAppScss(absDir, name, 'remove');
-            }
+        if (pendingEvents.has(filename)) {
+            clearTimeout(pendingEvents.get(filename));
         }
 
-        // --- Manejo de archivos .scss individuales (lógica original) ---
+        const timeoutId = setTimeout(() => {
+            processEvent(filename);
+            pendingEvents.delete(filename);
+        }, DEBOUNCE_DELAY);
+
+        pendingEvents.set(filename, timeoutId);
+    });
+
+    function processEvent(filename) {
+        const relPath = filename.split(path.sep).join('/');
+        const filePath = path.join(absDir, filename);
+        const exists = fs.existsSync(filePath);
+
+        const parentRelDir = path.dirname(relPath);
+        const isTopLevel = parentRelDir === '.';
+        const parentAbsDir = path.dirname(filePath);
+        const baseName = path.basename(relPath);
+
+        const isDirNow = exists && fs.statSync(filePath).isDirectory();
+        const wasKnownDir = knownDirs.has(relPath);
+
+        // --- CARPETAS ---
+        if (isDirNow || wasKnownDir) {
+            if (exists && !wasKnownDir) {
+                // 🆕 Carpeta nueva: crear index y scanear contenido
+                knownDirs.add(relPath);
+                ensureFolderIndex(filePath);
+                
+                // 🆕 RE-SCANEAR LA CARPETA para encontrar archivos existentes
+                scanAndIndexFolder(filePath);
+
+                if (isTopLevel) {
+                    updateAppScss(absDir, baseName, 'add');
+                } else {
+                    updateIndex(parentAbsDir, baseName, 'add');
+                }
+                console.log(`[scss-auto-index] Carpeta creada y escaneada: ${relPath}/`);
+            } else if (!exists && wasKnownDir) {
+                // Carpeta eliminada
+                knownDirs.delete(relPath);
+
+                for (const d of Array.from(knownDirs)) {
+                    if (d.startsWith(relPath + '/')) knownDirs.delete(d);
+                }
+
+                if (isTopLevel) {
+                    updateAppScss(absDir, baseName, 'remove');
+                } else {
+                    updateIndex(parentAbsDir, baseName, 'remove');
+                }
+                console.log(`[scss-auto-index] Carpeta eliminada: ${relPath}/`);
+            }
+            return;
+        }
+
+        // --- ARCHIVOS .scss ---
         if (!filename.endsWith('.scss')) return;
         if (path.basename(filename) === '_index.scss') return;
 
-        const fileDir = path.dirname(filePath);
         const fileName = path.basename(filename, '.scss').replace(/^_/, '');
 
-        if (event === 'rename') {
-            if (fs.existsSync(filePath)) {
-                updateIndex(fileDir, fileName, 'add');
-            } else {
-                updateIndex(fileDir, fileName, 'remove');
-            }
+        const parentExists = fs.existsSync(parentAbsDir);
+        if (!parentExists) {
+            console.log(`[scss-auto-index] Directorio padre no existe: ${parentAbsDir}`);
+            return;
         }
-    });
+
+        if (exists) {
+            ensureFolderIndex(parentAbsDir);
+            updateIndex(parentAbsDir, fileName, 'add');
+            console.log(`[scss-auto-index] Archivo: ${relPath}`);
+        } else {
+            updateIndex(parentAbsDir, fileName, 'remove');
+            console.log(`[scss-auto-index] Archivo eliminado: ${relPath}`);
+        }
+    }
 }
 
 export default function scssAutoIndex(scssDir = 'src/scss') {
