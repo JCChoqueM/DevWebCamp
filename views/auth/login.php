@@ -5,8 +5,14 @@
     <p class="auth__texto">
         Iniciar Sesión en DevWebCamp
     </p>
+
+<?php
+    require_once __DIR__ . '/../templates/alertas.php';
+?>
+
     <form
-        action=""
+        action="/login"
+        method="POST"
         class="formulario"
     >
         <!-- SECTION email [inicio] -->

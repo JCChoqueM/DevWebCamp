@@ -5,8 +5,13 @@
     <p class="auth__texto">
         Recupera tu Acceso a DevWebCamp
     </p>
+
+    <?php
+    require_once __DIR__ . '/../templates/alertas.php';
+    ?>
     <form
-        action=""
+        action="/olvide"
+        method="POST"
         class="formulario"
     >
         <!-- SECTION email [inicio] -->
@@ -35,8 +40,8 @@
     </form>
     <div class="acciones">
         <a
-        href="/login"
-        class="acciones__enlace"
+            href="/login"
+            class="acciones__enlace"
         >¿Ya tienes una cuenta? Iniciar Sesión</a>
         <a
             href="/registro"
