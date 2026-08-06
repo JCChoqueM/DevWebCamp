@@ -1,3 +1,7 @@
+<?php
+/** @var \Model\Usuario $usuario */
+?>
+
 <main class="auth">
     <h2 class="auth__heading">
         <?= $titulo ?>
@@ -5,8 +9,15 @@
     <p class="auth__texto">
         Registrate en DevWebCamp
     </p>
+    <?php
+    require_once __DIR__ . '/../templates/alertas.php';
+
+    ?>
+
+
     <form
-        action=""
+        action="/registro"
+        method="POST"
         class="formulario"
     >
         <!-- SECTION nombre [inicio] -->
@@ -23,6 +34,7 @@
                 placeholder="Tu Nombre"
                 id="nombre"
                 name="nombre"
+                value="<?= $usuario->nombre ?>"
             >
         </div>
         <!-- !SECTION nombre fin - [fin] -->
@@ -34,13 +46,14 @@
                 class="formulario__label"
             >Apellido</label>
 
-
+          
             <input
                 type="text"
                 class="formulario__input"
                 placeholder="Tu Apellido"
                 id="apellido"
                 name="apellido"
+                value="<?= $usuario->apellido ?>"
             >
         </div>
         <!-- !SECTION apellidofin - [fin] -->
@@ -58,6 +71,7 @@
                 placeholder="Tu Email"
                 id="email"
                 name="email"
+                value="<?= $usuario->email ?>"
             >
         </div>
         <!-- !SECTION email fin - [fin] -->
