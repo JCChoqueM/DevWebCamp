@@ -40,3 +40,10 @@ function vite_script($archivo)
 
     return "<script type=\"module\" src=\"/build/{$file}\"></script>";
 }
+
+function pagina_actual($path): bool
+{
+
+    return str_contains($_SERVER['PATH_INFO'], $path) ? true : false;
+
+}
