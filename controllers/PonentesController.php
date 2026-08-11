@@ -15,6 +15,9 @@ class PonentesController
     {
 
         $ponentes = Ponente::all();
+        if (!is_admin()) {
+            header('Location: /login');
+        }
 
         $router->render('admin/ponentes/index', [
             'titulo' => 'Ponentes / Conferencistas',
@@ -27,10 +30,16 @@ class PonentesController
     /* SECTION1  crear[inicio] */
     public static function crear(Router $router)
     {
+         if (!is_admin()) {
+            header('Location: /login');
+        }
         $alertas = [];
         $ponente = new Ponente;
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+             if (!is_admin()) {
+            header('Location: /login');
+        }
             //leer imgen
             if (!empty($_FILES['imagen']['tmp_name'])) {
 
@@ -86,7 +95,9 @@ class PonentesController
     /* SECTION2 editar[inicio] */
     public static function editar(Router $router)
     {
-
+ if (!is_admin()) {
+            header('Location: /login');
+        }
         $alertas = [];
 
         //validar el ID
@@ -106,6 +117,9 @@ class PonentesController
         $ponente->imagen_actual = $ponente->imagen;
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+             if (!is_admin()) {
+            header('Location: /login');
+        }
 
             if (!empty($_FILES['imagen']['tmp_name'])) {
 
@@ -159,4 +173,34 @@ class PonentesController
     }
     /* !SECTION2 fin - editar[fin] */
 
+
+    /* SECTION3 eliminar[inicio] */
+
+    public static function eliminar()
+    {
+         if (!is_admin()) {
+            header('Location: /login');
+        }
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+             if (!is_admin()) {
+            header('Location: /login');
+        }
+
+            $id = $_POST['id'];
+            $ponente = Ponente::find($id);
+
+            if (!isset($ponente)) {
+                header('Location: /admin/ponentes');
+            }
+
+            $resultado = $ponente->eliminar();
+
+            if ($resultado) {
+                header('Location: /admin/ponentes');
+            }
+        }
+    }
+
+    /* !SECTION3 fin - eliminar[fin] */
 }

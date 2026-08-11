@@ -5,7 +5,7 @@
         href="/admin/ponentes/crear"
     >
         <i class="fa-solid fa-circle-plus"> </i>
-        Añadir Ponente     
+        Añadir Ponente
     </a>
 </div>
 
@@ -57,9 +57,15 @@
                                 Editar</a>
 
                             <form
-                                action=""
+                                action="/admin/ponentes/eliminar"
+                                method="POST"
                                 class="table__formulario"
                             >
+                                <input
+                                    type="hidden"
+                                    name="id"
+                                    value="<?= $ponente->id ?>"
+                                >
                                 <button
                                     class="table__accion table__accion--eliminar"
                                     type="submit"
