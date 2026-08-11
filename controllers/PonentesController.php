@@ -10,12 +10,21 @@ use Intervention\Image\ImageManagerStatic as Image;
 class PonentesController
 {
 
+    /* SECTION index[inicio] */
     public static function index(Router $router)
     {
+
+        $ponentes = Ponente::all();
+
         $router->render('admin/ponentes/index', [
-            'titulo' => 'Ponentes / Conferencistas'
+            'titulo' => 'Ponentes / Conferencistas',
+            'ponentes' => $ponentes
         ]);
     }
+    /* !SECTION fin - index[fin] */
+
+
+    /* SECTION1  crear[inicio] */
     public static function crear(Router $router)
     {
         $alertas = [];
@@ -71,4 +80,6 @@ class PonentesController
 
         ]);
     }
+    /* !SECTION1  fin - crear[fin] */
+
 }
