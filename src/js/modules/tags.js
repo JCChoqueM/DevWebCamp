@@ -3,10 +3,19 @@
 
   /* section1 escuchar los cambios en el input[inicio] */
   if (tagsInput) {
+
     const tagsDiv = document.querySelector('#tags');
     const tagsInputHidden = document.querySelector('[name="tags"]');
 
     let tags = [];
+
+    //Recuperar del input oculto
+    if (tagsInputHidden.value !== '') {
+      tags = tagsInputHidden.value.split(',');
+      mostrarTags();
+    }
+
+    //Escuchar los cambios en el input
     tagsInput.addEventListener('keypress', guardarTag);
 
     function guardarTag(e) {

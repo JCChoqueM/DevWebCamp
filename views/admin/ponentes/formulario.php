@@ -84,6 +84,30 @@
     </div>
     <!-- !section4 fin - imagen [fin] -->
 
+    <!-- section5 editar imagen [inicio] -->
+    <?php if (isset($ponente->imagen_actual)) { ?>
+        <p class="formulario__texto">Imagen Actual:</p>
+        <div class="formulario__imagen">
+            <picture>
+                <source
+                    srcset="<?= $_ENV['APP_URL'] . '/img/speakers/' . $ponente->imagen ?>.webp"
+                    type="image/webp"
+                >
+                <source
+                    srcset="<?= $_ENV['APP_URL'] . '/img/speakers/' . $ponente->imagen ?>.png"
+                    type="image/png"
+                >
+                <img
+                    src="<?= $_ENV['APP_URL'] . '/img/speakers/' . $ponente->imagen ?>.png"
+                    alt="Imagen Ponente"
+                >
+            </picture>
+
+        </div>
+    <?php } ?>
+    <!-- !section5 fin - editar imagen [fin] -->
+
+
 </fieldset>
 
 
