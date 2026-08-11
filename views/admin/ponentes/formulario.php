@@ -157,7 +157,7 @@
                 class="formulario__input--sociales"
                 name="redes[facebook]"
                 placeholder="Facebook"
-                value="<?= $ponente->facebook ?? '' ?>"
+                value="<?= $redes->facebook ?? '' ?>"
             >
         </div>
     </div>
@@ -174,7 +174,7 @@
                 class="formulario__input--sociales"
                 name="redes[twitter]"
                 placeholder="Twitter"
-                value="<?= $ponente->twitter ?? '' ?>"
+                value="<?= $redes->twitter ?? '' ?>"
             >
         </div>
     </div>
@@ -191,7 +191,7 @@
                 class="formulario__input--sociales"
                 name="redes[youtube]"
                 placeholder="Youtube"
-                value="<?= $ponente->youtube ?? '' ?>"
+                value="<?= $redes->youtube ?? '' ?>"
             >
         </div>
     </div>
@@ -208,7 +208,7 @@
                 class="formulario__input--sociales"
                 name="redes[instagram]"
                 placeholder="Instagram"
-                value="<?= $ponente->instagram ?? '' ?>"
+                value="<?= $redes->instagram ?? '' ?>"
             >
         </div>
     </div>
@@ -225,7 +225,7 @@
                 class="formulario__input--sociales"
                 name="redes[tiktok]"
                 placeholder="TikTok"
-                value="<?= $ponente->tiktok ?? '' ?>"
+                value="<?= $redes->tiktok ?? '' ?>"
             >
         </div>
     </div>
@@ -242,7 +242,7 @@
                 class="formulario__input--sociales"
                 name="redes[github]"
                 placeholder="GitHub"
-                value="<?= $ponente->github ?? '' ?>"
+                value="<?= $redes->github ?? '' ?>"
             >
         </div>
     </div>
