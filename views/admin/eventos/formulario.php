@@ -53,4 +53,87 @@
 
     </div>
     <!-- !section2  fin - Categoria[fin] -->
+
+
+    <!-- section3 dias[inicio] -->
+
+    <div class="formulario__campo">
+        <label
+            for="categoria"
+            class="formulario__label"
+        >Selecciona el día</label>
+
+        <div class="formulario__radio">
+
+            <?php foreach ($dias as $dia) { ?>
+                <div>
+                    <label for="<?= strtolower($dia->nombre) ?>"><?= $dia->nombre ?></label>
+                    <input
+                        type="radio"
+                        id="<?= strtolower($dia->nombre) ?>"
+                        name="dia"
+                        value="<?= $dia->id ?>"
+                    >
+                </div>
+            <?php } ?>
+        </div>
+
+    </div>
+
+    <!-- !section3 fin - dias[fin] -->
+
+    <!-- section4 horas[inicio] -->
+    <div
+        id="horas"
+        class="formulario__campo"
+    >
+        <label
+            for="horas"
+            class="formulario__label"
+        >Seleccionar Hora</label>
+        <ul class="horas">
+            <?php foreach ($horas as $hora) { ?>
+                <li class="horas__hora"><?= $hora->hora ?></li>
+            <?php } ?>
+        </ul>
+    </div>
+    <!-- !section4 fin - horas[fin] -->
 </fieldset>
+
+<!-- SECTION  [inicio] -->
+<fieldset class="formulario__fieldset">
+    <legend class="formulario__legend">Información Extra</legend>
+
+    <!-- section  Ponente[inicio] -->
+    <div class="formulario__campo">
+        <label
+            for="ponentes"
+            class="formulario__label"
+        >Ponente</label>
+        <input
+            type="text"
+            class="formulario__input"
+            id="ponentes"
+            placeholder="Buscar Ponente"
+        >
+    </div>
+    <!-- !section  fin - Ponente[fin] -->
+
+    <!-- section  Lugares disponibles[inicio] -->
+    <div class="formulario__campo">
+        <label
+            for="disponibles"
+            class="formulario__label"
+        >Lugares Disponibles</label>
+        <input
+            type="number"
+            min="1"
+            class="formulario__input"
+            id="disponibles"
+            name="disponibles"
+            placeholder="Ej. 20"
+        >
+    </div>
+    <!-- !section  fin - Lugares disponibles[fin] -->
+</fieldset>
+<!-- !SECTION  fin - [fin] -->

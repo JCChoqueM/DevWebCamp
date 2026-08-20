@@ -51,7 +51,7 @@
   }
 
   &__input,
-  &__nombre {
+  &__select {
     padding: 1rem;
     border: 1px solid color.adjust(v.$gris-claro, $lightness: -20%);
     border-radius: 0.5rem;
@@ -65,6 +65,11 @@
       border-top-left-radius: 0;
       border-bottom-left-radius: 0;
     }
+  }
+
+  &__radio {
+    display: flex;
+    gap: 2rem;
   }
 
   &__listado {
