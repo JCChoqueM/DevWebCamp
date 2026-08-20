@@ -50,7 +50,8 @@
     color: rgba(v.$negro, 0.8);
   }
 
-  &__input {
+  &__input,
+  &__nombre {
     padding: 1rem;
     border: 1px solid color.adjust(v.$gris-claro, $lightness: -20%);
     border-radius: 0.5rem;

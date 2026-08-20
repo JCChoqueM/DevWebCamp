@@ -31,4 +31,26 @@
         ></textarea>
     </div>
     <!-- !section1  fin - Descripcion[fin] -->
+
+
+    <!-- section2  Categoria[inicio] -->
+    <div class="formulario__campo">
+        <label
+            for="categoria"
+            class="formulario__label"
+        >Categoria o Tipo de Evento</label>
+        <select
+            class="formulario__select"
+            id="categoria"
+            name="categora_id"
+        >
+            <option value="">-- Seleccionar --</option>
+            <?php foreach ($categorias as $categoria) { ?>
+                <option value="<?= $categoria->id ?>"><?= $categoria->nombre ?></option>
+            <?php } ?>
+
+        </select>
+
+    </div>
+    <!-- !section2  fin - Categoria[fin] -->
 </fieldset>
