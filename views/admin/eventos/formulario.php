@@ -1,3 +1,12 @@
+<?php
+
+use Model\Evento;
+
+/** @var Evento $evento */
+/** @var array $categorias */
+/** @var array $dias */
+/** @var array $horas */
+?>
 <fieldset class="formulario__fieldset">
     <legend class="formulario__legend">Informacion Evento</legend>
     <!-- section  nombre[inicio] -->
@@ -125,7 +134,7 @@
             for="disponibles"
             class="formulario__label"
         >Lugares Disponibles</label>
-     
+
         <input
             type="number"
             min="1"

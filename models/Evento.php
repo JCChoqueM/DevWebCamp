@@ -15,7 +15,8 @@ class Evento extends ActiveRecord
     public $dia_id;
     public $hora_id;
     public $ponente_id;
-    public function __construct()
+
+    public function __construct($args = [])
     {
         $this->id = $args['id'] ?? null;
         $this->nombre = $args['nombre'] ?? '';
@@ -51,7 +52,6 @@ class Evento extends ActiveRecord
         if (!$this->ponente_id || !filter_var($this->ponente_id, FILTER_VALIDATE_INT)) {
             self::$alertas['error'][] = 'Selecciona la persona encargada del evento';
         }
-
 
         return self::$alertas;
     }
