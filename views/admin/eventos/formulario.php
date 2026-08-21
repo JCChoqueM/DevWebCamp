@@ -12,6 +12,7 @@
             id="nombre"
             name="nombre"
             placeholder="Nombre Evento"
+            value="<?= $evento->nombre ?>"
         >
     </div>
     <!-- !section  fin - nombre[fin] -->
@@ -28,7 +29,7 @@
             name="descripcion"
             placeholder="Descripción Evento"
             rows="8"
-        ></textarea>
+        ><?= $evento->descripcion ?></textarea>
     </div>
     <!-- !section1  fin - Descripcion[fin] -->
 
@@ -42,12 +43,11 @@
         <select
             class="formulario__select"
             id="categoria"
-            name="categora_id"
+            name="categoria_id"
         >
             <option value="">-- Seleccionar --</option>
-            <?php foreach ($categorias as $categoria) { ?>
-                <option value="<?= $categoria->id ?>"><?= $categoria->nombre ?></option>
-            <?php } ?>
+
+            <?php require __DIR__ . '/partials/opciones_categoria.php'; ?>
 
         </select>
 
@@ -125,6 +125,7 @@
             for="disponibles"
             class="formulario__label"
         >Lugares Disponibles</label>
+     
         <input
             type="number"
             min="1"
@@ -132,6 +133,7 @@
             id="disponibles"
             name="disponibles"
             placeholder="Ej. 20"
+            value="<?php echo $evento->disponibles ?>"
         >
     </div>
     <!-- !section  fin - Lugares disponibles[fin] -->
