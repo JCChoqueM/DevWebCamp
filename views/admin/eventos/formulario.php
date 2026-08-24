@@ -80,12 +80,17 @@ use Model\Evento;
                     <input
                         type="radio"
                         id="<?= strtolower($dia->nombre) ?>"
-                        name="dia"
+                        name="dia"debuguear($user);
                         value="<?= $dia->id ?>"
                     >
                 </div>
             <?php } ?>
         </div>
+        <input
+            type="hidden"
+            name="dia_id"
+            value=""
+        >
 
     </div>
 
@@ -100,7 +105,10 @@ use Model\Evento;
             for="horas"
             class="formulario__label"
         >Seleccionar Hora</label>
-        <ul class="horas">
+        <ul
+            id="horas"
+            class="horas"
+        >
             <?php foreach ($horas as $hora) { ?>
                 <li class="horas__hora"><?= $hora->hora ?></li>
             <?php } ?>
