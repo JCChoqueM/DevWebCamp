@@ -80,7 +80,8 @@ use Model\Evento;
                     <input
                         type="radio"
                         id="<?= strtolower($dia->nombre) ?>"
-                        name="dia"debuguear($user);
+                        name="dia"
+                        debuguear($user);
                         value="<?= $dia->id ?>"
                     >
                 </div>
@@ -110,9 +111,17 @@ use Model\Evento;
             class="horas"
         >
             <?php foreach ($horas as $hora) { ?>
-                <li class="horas__hora"><?= $hora->hora ?></li>
+                <li
+                    data-hora-id="<?= $hora->id ?>"
+                    class="horas__hora horas__hora--deshabilitada"
+                ><?= $hora->hora ?></li>
             <?php } ?>
         </ul>
+        <input
+            type="hidden"
+            name="hora_id"
+            value=""
+        >
     </div>
     <!-- !section4 fin - horas[fin] -->
 </fieldset>
