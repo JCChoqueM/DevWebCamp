@@ -58,9 +58,15 @@
                         <td class="table__td">
                             <?= $evento->nombre ?>
                         </td>
-                        
+
                         <td class="table__td">
-                            <?= $evento->categoria_id ?>
+                            <?= $evento->categoria->nombre ?>
+                        </td>
+                        <td class="table__td">
+                            <?= $evento->dia->nombre . "," . $evento->hora->hora ?>
+                        </td>
+                        <td class="table__td">
+                            <?= $evento->ponente->nombre . " " . $evento->ponente->apellido ?>
                         </td>
                     </tr>
                 <?php } ?>
