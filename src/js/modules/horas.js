@@ -22,12 +22,11 @@
                 await buscarEventos();
 
                 const id = inputHiddenHora.value.trim();
-                console.log(`[data-hora-id="${id}"]`)
-                console.log(id);
+      
 
                 // Resaltar la hora actual
                 const horaSeleccionada = document.querySelector(`[data-hora-id="${id}"]`)
-                console.log(horaSeleccionada);
+
                 horaSeleccionada.classList.remove('horas__hora--deshabilitada')
                 horaSeleccionada.classList.add('horas__hora--seleccionada')
 
