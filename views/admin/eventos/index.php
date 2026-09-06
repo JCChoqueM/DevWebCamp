@@ -68,6 +68,34 @@
                         <td class="table__td">
                             <?= $evento->ponente->nombre . " " . $evento->ponente->apellido ?>
                         </td>
+                        <td class="table__td--acciones">
+                            <a
+                                href="/admin/eventos/editar?id=<?= $evento->id ?>"
+                                class="table__accion table__accion--editar"
+                            >
+                                <i class="fa-solid fa-pencil"></i>
+                                Editar</a>
+
+                            <form
+                                action="/admin/ponentes/eliminar"
+                                method="POST"
+                                class="table__formulario"
+                            >
+                                <input
+                                    type="hidden"
+                                    name="id"
+                                    value="<?= $evento->id ?>"
+                                >
+                                <button
+                                    class="table__accion table__accion--eliminar"
+                                    type="submit"
+                                >
+                                    <i class="fa-solid fa-circle-xmark"></i>
+                                    Eliminar
+                                </button>
+
+                            </form>
+                        </td>
                     </tr>
                 <?php } ?>
             </tbody>

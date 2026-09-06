@@ -77,20 +77,15 @@ use Model\Evento;
             <?php foreach ($dias as $dia) { ?>
                 <div>
                     <label for="<?= strtolower($dia->nombre) ?>"><?= $dia->nombre ?></label>
-                    <input
-                        type="radio"
-                        id="<?= strtolower($dia->nombre) ?>"
-                        name="dia"
-                        debuguear($user);
-                        value="<?= $dia->id ?>"
-                    >
+                    <?php require __DIR__ . '/partials/echoInputChecked.php'; ?>
+
                 </div>
             <?php } ?>
         </div>
         <input
             type="hidden"
             name="dia_id"
-            value=""
+            value="<?= $evento->dia_id ?>"
         >
 
     </div>
@@ -120,7 +115,7 @@ use Model\Evento;
         <input
             type="hidden"
             name="hora_id"
-            value=""
+            value=" <?= $evento->hora_id ?>"
         >
     </div>
     <!-- !section4 fin - horas[fin] -->
