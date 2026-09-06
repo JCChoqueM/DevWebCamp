@@ -9,3 +9,70 @@
         Añadir Evento
     </a>
 </div>
+
+<div class="dashboard__contenedor">
+    <?php if (!empty($eventos)) { ?>
+        <table class="table">
+            <thead class="table__thead">
+                <tr>
+                    <!-- subBloque  nombre[inicio]-->
+                    <th
+                        scope="col"
+                        class="table__th"
+                    >Evento</th>
+                    <!-- !subBloque  fin - nombre[fin]-->
+
+                    <!-- subBloque1  Categoria[inicio]-->
+                    <th
+                        scope="col"
+                        class="table__th"
+                    >Categoria</th>
+                    <!-- !subBloque1 fin - Categoria[fin]-->
+
+                    <!-- subBloque2 Día y Hora[inicio]-->
+                    <th
+                        scope="col"
+                        class="table__th"
+                    >Día y Hora</th>
+                    <!-- !subBloque2 fin - Día y Hora[fin]-->
+
+                    <!-- subBloque2 Ponente[inicio]-->
+                    <th
+                        scope="col"
+                        class="table__th"
+                    >Ponente</th>
+                    <!-- !subBloque2 fin - Ponente[fin]-->
+                    <!-- subBloque2 Editar y/o Eliminar[inicio]-->
+                    <th
+                        scope="col"
+                        class="table__th"
+                    >Editar y/o Eliminar</th>
+                    <!-- !subBloque2 fin - Editar y/o Eliminar[fin]-->
+                </tr>
+            </thead>
+
+
+            <tbody class="table__tbody">
+                <?php foreach ($eventos as $evento) { ?>
+                    <tr class="table__tr">
+                        <td class="table__td">
+                            <?= $evento->nombre ?>
+                        </td>
+                        
+                        <td class="table__td">
+                            <?= $evento->categoria_id ?>
+                        </td>
+                    </tr>
+                <?php } ?>
+            </tbody>
+        </table>
+
+    <?php } else { ?>
+        <p class="text-center">No hay Eventos Aun</p>
+    <?php } ?>
+</div>
+
+<?php
+echo $paginacion;
+
+?>
