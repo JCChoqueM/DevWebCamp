@@ -77,7 +77,7 @@
                                 Editar</a>
 
                             <form
-                                action="/admin/ponentes/eliminar"
+                                action="/admin/eventos/eliminar"
                                 method="POST"
                                 class="table__formulario"
                             >

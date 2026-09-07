@@ -146,7 +146,7 @@ use Model\Evento;
         <input
             type="hidden"
             name="ponente_id"
-            value=""
+            value="<?= $evento->ponente_id ?>"
         >
     </div>
     <!-- !section  fin - Ponente[fin] -->
