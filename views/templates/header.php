@@ -48,7 +48,7 @@
                 href="paquetes"
                 class="navegacion__enlace"
             >Paquetes</a><a
-                href="workshops-conferencia"
+                href="workshops-conferencias"
                 class="navegacion__enlace"
             >Workshops / Conferencias</a><a
                 href="registro"
