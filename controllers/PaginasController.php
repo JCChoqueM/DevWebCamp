@@ -17,14 +17,14 @@ class PaginasController
     {
 
         $router->render('paginas/devwebcamp', [
-            'titulo' => 'Sobre WebDevCamp'
+            'titulo' => 'Sobre DevWebCamp'
         ]);
     }
     public static function paquetes(Router $router)
     {
 
         $router->render('paginas/paquetes', [
-            'titulo' => 'Paquetes WebDevCamp'
+            'titulo' => 'Paquetes DevWebCamp'
         ]);
     }
     public static function conferencias(Router $router)
