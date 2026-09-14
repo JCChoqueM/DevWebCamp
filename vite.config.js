@@ -3,8 +3,6 @@ import FullReload from 'vite-plugin-full-reload';
 import scssAutoIndex from './vite-plugins/scss-auto-index.js';
 import fg from 'fast-glob';
 
-// Busca cualquier .js en src/js/ y sus subcarpetas,
-// EXCEPTO los que estén dentro de "modules/" (esos son solo para import)
 const jsEntries = fg.sync([
     'src/js/**/*.js',
     '!src/js/modules/**'
@@ -19,8 +17,16 @@ export default defineConfig(({ command }) => ({
     publicDir: false,
     plugins: [
         scssAutoIndex('src/scss'),
-        FullReload(['**/*.php'], {
-            delay: 1000
+        FullReload([
+            'Router.php',          // Router principal
+            'views/**/*.php',      // Views (admin, auth, paginas, templates)
+            'controllers/**/*.php', // Controllers
+            'models/**/*.php',     // Models
+            'classes/**/*.php',    // Classes (Email.php, Paginacion.php)
+            'includes/**/*.php',   // Includes (app.php, database.php, funciones.php)
+            'public/index.php'     // Entry point
+        ], {
+            delay: 2500
         })
     ],
     css: {
@@ -37,7 +43,7 @@ export default defineConfig(({ command }) => ({
         origin: 'http://localhost:5174',
         watch: {
             usePolling: true,
-            interval: 1500,
+            interval: 500,
             ignored: ['**/vendor/**',
                 '**/node_modules/**',
                 '**/public/build/**']
