@@ -1,5 +1,7 @@
 <?php
+
 namespace Model;
+
 class ActiveRecord
 {
 
@@ -48,6 +50,9 @@ class ActiveRecord
         return $resultado;
     }
 
+    /**
+     * @return static[]
+     */
     public static function all($orden = 'DESC')
     {
         $query = "SELECT * FROM " . static::$tabla . " ORDER BY id {$orden}";
@@ -67,6 +72,9 @@ class ActiveRecord
     }
 
     // Obtener Registro
+    /**
+     * @return static|false
+     */
     public static function get($limite)
     {
         $query = "SELECT * FROM " . static::$tabla . " ORDER BY id DESC LIMIT {$limite}";
@@ -76,6 +84,9 @@ class ActiveRecord
 
 
     //paginas los registros
+    /**
+     * @return static[]
+     */
     public static function paginar($por_pagina, $offset)
     {
         $query = "SELECT * FROM " . static::$tabla . " ORDER BY id DESC LIMIT {$por_pagina} OFFSET {$offset}";
@@ -101,7 +112,21 @@ class ActiveRecord
         return array_shift($resultado);
     }
 
+    //Retornar los registros por un orden
+    /**
+     * @return static[]
+     */
+    public static function ordenar($columna, $orden)
+    {
+        $query = "SELECT * FROM " . static::$tabla . " ORDER BY {$columna} {$orden} ";
+        $resultado = self::consultarSQL($query);
+        return $resultado;
+    }
+
     //Busqueda Where con Múltiples opciones
+    /**
+     * @return static[]
+     */
     public static function whereArray($array = [])
     {
         $query = "SELECT * FROM " . static::$tabla . " WHERE ";
@@ -138,6 +163,9 @@ class ActiveRecord
 
 
     //Busca todos los registros que pertenecen a un ID
+    /**
+     * @return static[]
+     */
     public static function belongsTo($columna, $valor)
     {
         $query = "SELECT * FROM " . static::$tabla . " WHERE {$columna} = '{$valor}'";
@@ -145,6 +173,9 @@ class ActiveRecord
         return ($resultado);
     }
     // SQL para Consultas Avanzadas.
+    /**
+     * @return static[]
+     */
     public static function SQL($consulta)
     {
         $query = $consulta;
@@ -202,6 +233,9 @@ class ActiveRecord
         return $resultado;
     }
 
+    /**
+     * @return static[]
+     */
     public static function consultarSQL($query)
     {
         // Consultar la base de datos
@@ -220,6 +254,9 @@ class ActiveRecord
         return $array;
     }
 
+    /**
+     * @return static
+     */
     protected static function crearObjeto($registro)
     {
         $objeto = new static;
