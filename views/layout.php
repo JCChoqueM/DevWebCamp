@@ -68,6 +68,18 @@ if (!$isDev) {
             href="/build/<?= $manifest['src/scss/app.scss']['file'] ?? '' ?>"
         >
     <?php endif ?>
+     <?= $script ?? '' ?>
+    <?php if ($isDev): ?>
+        <script
+            type="module"
+            src="http://localhost:5174/src/js/app.js"
+        ></script>
+    <?php else: ?>
+        <script
+            src="/build/<?= $manifest['src/js/app.js']['file'] ?? '' ?>"
+            defer
+        ></script>
+    <?php endif ?>
 </head>
 
 <body>
