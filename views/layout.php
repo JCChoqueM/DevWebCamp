@@ -68,7 +68,7 @@ if (!$isDev) {
             href="/build/<?= $manifest['src/scss/app.scss']['file'] ?? '' ?>"
         >
     <?php endif ?>
-     <?= $script ?? '' ?>
+    <?= $script ?? '' ?>
     <?php if ($isDev): ?>
         <script
             type="module"
@@ -80,6 +80,7 @@ if (!$isDev) {
             defer
         ></script>
     <?php endif ?>
+
 </head>
 
 <body>
