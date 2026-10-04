@@ -7,22 +7,16 @@
 
         <div class="evento__autor-info">
             <picture>
-                <source
-                    srcset="<?= $_ENV['APP_URL'] . '/img/speakers/' . $evento->ponente->imagen ?>.webp"
-                    type="image/webp"
-                >
-                <source
-                    srcset="<?= $_ENV['APP_URL'] . '/img/speakers/' . $evento->ponente->imagen ?>.png"
-                    type="image/png"
-                >
-                <img
-                    class="evento__imagen-autor"
-                    loading="lazy"
-                    width="200"
-                    height="300"
-                    src="<?= $_ENV['APP_URL'] . '/img/speakers/' . $evento->ponente->imagen ?>.png"
-                    alt="Imagen Ponente"
-                >
+                <source srcset="<?= $_ENV['APP_URL'] . '/img/speakers/' . $evento->ponente->imagen ?>.webp"
+                        type="image/webp">
+                <source srcset="<?= $_ENV['APP_URL'] . '/img/speakers/' . $evento->ponente->imagen ?>.png"
+                        type="image/png">
+                <img class="evento__imagen-autor"
+                     loading="lazy"
+                     width="200"
+                     height="300"
+                     src="<?= $_ENV['APP_URL'] . '/img/speakers/' . $evento->ponente->imagen ?>.png"
+                     alt="Imagen Ponente">
             </picture>
             <p class="evento__autor-nombre">
                 <?= $evento->ponente->nombre . " " . $evento->ponente->apellido ?>

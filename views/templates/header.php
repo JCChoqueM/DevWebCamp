@@ -1,14 +1,10 @@
 <header class="header">
     <div class="header__contenedor">
         <nav class="header__navegacion">
-            <a
-                href="/registro"
-                class="header__enlace"
-            >Registro</a>
-            <a
-                href="/login"
-                class="header__enlace"
-            >Iniciar Sesión</a>
+            <a href="/registro"
+               class="header__enlace">Registro</a>
+            <a href="/login"
+               class="header__enlace">Iniciar Sesión</a>
         </nav>
         <div class="header__contenido">
             <a href="/">
@@ -23,10 +19,8 @@
                 En Línea - Presencial
             </p>
 
-            <a
-                href="/registro"
-                class="header__boton"
-            >Comprar Pase</a>
+            <a href="/registro"
+               class="header__boton">Comprar Pase</a>
         </div>
     </div>
 </header>
@@ -40,20 +34,15 @@
             </h2>
 
         </a>
-        <nav class="navegacion">
-            <a
-                href="devwebcamp"
-                class="navegacion__enlace"
-            >Evento</a><a
-                href="paquetes"
-                class="navegacion__enlace"
-            >Paquetes</a><a
-                href="workshops-conferencias"
-                class="navegacion__enlace"
-            >Workshops / Conferencias</a><a
-                href="registro"
-                class="navegacion__enlace"
-            >Comprar Pase</a>
+        <a href="devwebcamp"
+           class="navegacion__enlace 
+           <?= pagina_actual('/devwebcamp') ?> ">Evento</a>
+        <a href="paquetes"
+           class="navegacion__enlace">Paquetes</a>
+        <a href="workshops-conferencias"
+           class="navegacion__enlace">Workshops / Conferencias</a>
+        <a href="registro"
+           class="navegacion__enlace">Comprar Pase</a>
         </nav>
     </div>
 </div>
