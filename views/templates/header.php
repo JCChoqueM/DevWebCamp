@@ -2,7 +2,7 @@
     <div class="header__contenedor">
         <nav class="header__navegacion">
             <?php if (is_auth()) { ?>
-                <a href="/registro"
+                <a href="<?php is_admin() ? '/admin/dashboard' : '/finalizar-registro'; ?>"
                    class="header__enlace">Administrar</a>
                 <form action="/logout"
                       method="POST"
