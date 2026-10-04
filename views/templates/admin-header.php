@@ -7,16 +7,12 @@
         </a>
 
         <nav class="dashboard__nav">
-            <form
-                action="/logout"
-                method="POST"
-                class="dashboard__form"
-            >
-                <input
-                    type="submit"
-                    value="Cerrar Sesión"
-                    class="dashboard__submit--logout"
-                >
+            <form action="/logout"
+                  method="POST"
+                  class="dashboard__form">
+                <input type="submit"
+                       value="Cerrar Sesión"
+                       class="dashboard__submit--logout">
             </form>
         </nav>
     </div>
