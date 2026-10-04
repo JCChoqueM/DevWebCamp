@@ -36,13 +36,20 @@
         </a>
         <a href="devwebcamp"
            class="navegacion__enlace 
-           <?= pagina_actual('/devwebcamp') ?> ">Evento</a>
+           <?= pagina_actual('/devwebcamp') ? 'navegacion__enlace--actual' : '' ?> ">Evento</a>
+
         <a href="paquetes"
-           class="navegacion__enlace">Paquetes</a>
+           class="navegacion__enlace
+           <?= pagina_actual('/paquetes') ? 'navegacion__enlace--actual' : '' ?> ">Paquetes</a>
+
         <a href="workshops-conferencias"
-           class="navegacion__enlace">Workshops / Conferencias</a>
+           class="navegacion__enlace
+           <?= pagina_actual('/workshops-conferencias') ? 'navegacion__enlace--actual' : '' ?> ">Workshops /
+            Conferencias</a>
+
         <a href="registro"
-           class="navegacion__enlace">Comprar Pase</a>
+           class="navegacion__enlace
+           <?= pagina_actual('/registro') ? 'navegacion__enlace--actual' : '' ?> ">Comprar Pase</a>
         </nav>
     </div>
 </div>
