@@ -1,4 +1,16 @@
 {
+  "src/img/bg_numeros.avif": {
+    "file": "assets/bg_numeros-vbViV8By.avif",
+    "src": "src/img/bg_numeros.avif"
+  },
+  "src/img/bg_numeros.jpg": {
+    "file": "assets/bg_numeros-Bsuq5IE1.jpg",
+    "src": "src/img/bg_numeros.jpg"
+  },
+  "src/img/bg_numeros.webp": {
+    "file": "assets/bg_numeros-DvGGMU2S.webp",
+    "src": "src/img/bg_numeros.webp"
+  },
   "src/img/header.avif": {
     "file": "assets/header-8IoDCpKw.avif",
     "src": "src/img/header.avif"
@@ -12,13 +24,16 @@
     "src": "src/img/header.webp"
   },
   "src/js/app.js": {
-    "file": "assets/app-CsY70ZEB.js",
+    "file": "assets/app-BzPfxeSn.js",
     "name": "app",
     "src": "src/js/app.js",
-    "isEntry": true
+    "isEntry": true,
+    "css": [
+      "assets/app-DxHKOkZ5.css"
+    ]
   },
   "src/scss/app.scss": {
-    "file": "assets/styles-BokKiuB7.css",
+    "file": "assets/styles-B_Mf7Ofg.css",
     "src": "src/scss/app.scss",
     "isEntry": true
   }
