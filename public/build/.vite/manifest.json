@@ -24,7 +24,7 @@
     "src": "src/img/header.webp"
   },
   "src/js/app.js": {
-    "file": "assets/app-BzPfxeSn.js",
+    "file": "assets/app-CXZI01YX.js",
     "name": "app",
     "src": "src/js/app.js",
     "isEntry": true,
@@ -33,7 +33,7 @@
     ]
   },
   "src/scss/app.scss": {
-    "file": "assets/styles-DGy_A2ci.css",
+    "file": "assets/styles-HygqtchT.css",
     "src": "src/scss/app.scss",
     "isEntry": true
   }

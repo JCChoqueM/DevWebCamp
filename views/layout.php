@@ -47,6 +47,16 @@ if (!$isDev) {
     <?php else: ?>
         <link rel="stylesheet"
               href="/build/<?= $manifest['src/scss/app.scss']['file'] ?? '' ?>">
+        <?php
+        // Vite separa en "chunks" el CSS que los módulos JS importan
+        // (p. ej. swiper/css importado desde slider.js). En dev Vite lo inyecta
+        // automáticamente, pero en producción hay que enlazarlos explícitamente
+        // usando el arreglo `css` que el manifest asocia a la entrada app.js.
+        foreach (($manifest['src/js/app.js']['css'] ?? []) as $cssChunk):
+            ?>
+            <link rel="stylesheet"
+                  href="/build/<?= $cssChunk ?>">
+        <?php endforeach; ?>
     <?php endif ?>
     <?= $script ?? '' ?>
     <?php if ($isDev): ?>
