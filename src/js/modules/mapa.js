@@ -21,7 +21,7 @@
   }
 
   // Coordenadas del recinto del DevWebCamp (Centro de Convenciones de Los Ángeles)
-  const coordenadas = [34.0403207, -118.2695624];
+  const coordenadas = [-17.972464, -67.103521];
   const zoom = 16;
 
   // Crear el mapa centrado en las coordenadas con el nivel de zoom inicial.
