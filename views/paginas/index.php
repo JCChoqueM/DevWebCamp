@@ -154,6 +154,4 @@ include_once __DIR__ . '/conferencias.php';
             </div>
         <?php } ?>
     </div>
-
-
 </section>
