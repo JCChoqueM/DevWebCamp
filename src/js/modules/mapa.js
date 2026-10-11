@@ -25,7 +25,16 @@
   const zoom = 16;
 
   // Crear el mapa centrado en las coordenadas con el nivel de zoom inicial.
-  const map = L.map('mapa').setView(coordenadas, zoom);
+  // `scrollWheelZoom: false` es esencial aquí: si no se desactiva, al hacer
+  // scroll con la rueda del ratón sobre el mapa este captura el scroll y hace
+  // zoom, interrumpiendo el scroll natural de la página. Si prefieres conservar
+  // el zoom con rueda pero sin bloquear el scroll de la página, usa en su lugar
+  // `scrollWheelZoom: 'toggle'` (activa el zoom con rueda solo tras un click
+  // en el mapa) o implementa un overlay que al click habilite/desactive el
+  // mapa. Con `false` el usuario hace zoom con los controles + / − del mapa.
+  const map = L.map('mapa', {
+    scrollWheelZoom: false,
+  }).setView(coordenadas, zoom);
 
   // Capa base de OpenStreetMap (subdominios a/b/c -> cumple con el CSP).
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
