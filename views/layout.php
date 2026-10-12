@@ -42,9 +42,13 @@ if (!$isDev) {
     <?php if ($isDev): ?>
         <script type="module"
                 src="http://localhost:5174/@vite/client"></script>
+        <link href="https://unpkg.com/aos@2.3.1/dist/aos.css"
+              rel="stylesheet">
         <link rel="stylesheet"
               href="http://localhost:5174/src/scss/app.scss">
     <?php else: ?>
+        <link href="https://unpkg.com/aos@2.3.1/dist/aos.css"
+              rel="stylesheet">
         <link rel="stylesheet"
               href="/build/<?= $manifest['src/scss/app.scss']['file'] ?? '' ?>">
         <?php
@@ -58,6 +62,15 @@ if (!$isDev) {
                   href="/build/<?= $cssChunk ?>">
         <?php endforeach; ?>
     <?php endif ?>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Wait for DOM to be ready before initializing AOS.
+        // AOS.init() calls document.querySelector("body") internally,
+        // which returns null if called from <head> before <body> is parsed.
+        document.addEventListener('DOMContentLoaded', function () {
+            AOS.init();
+        });
+    </script>
     <?= $script ?? '' ?>
     <?php if ($isDev): ?>
         <script type="module"
