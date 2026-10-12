@@ -68,9 +68,9 @@ if (!$isDev) {
         // AOS.init() calls document.querySelector("body") internally,
         // which returns null if called from <head> before <body> is parsed.
         document.addEventListener('DOMContentLoaded', function () {
-            AOS.init(
-               once: true
-            );
+            AOS.init({
+                once: true
+            });
         });
     </script>
     <?= $script ?? '' ?>

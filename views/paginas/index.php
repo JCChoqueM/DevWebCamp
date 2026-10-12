@@ -44,8 +44,7 @@ include_once __DIR__ . '/conferencias.php';
 
     <div class="speakers__grid">
         <?php foreach ($ponentes as $ponente) { ?>
-            <div <?= aos_animacion() ?>
-                 class="speaker">
+            <div class="speaker">
                 <picture>
                     <source srcset="<?= $_ENV['APP_URL'] . '/img/speakers/' . $ponente->imagen ?>.webp"
                             type="image/webp">
@@ -174,7 +173,8 @@ include_once __DIR__ . '/conferencias.php';
 
     <div class="boletos__grid">
         <!-- section  presencial[inicio] -->
-        <div class="boleto boleto--presencial">
+        <div <?= aos_animacion() ?>
+             class="boleto boleto--presencial">
             <h4 class="boleto__logo">&#60;DevWebCamp /></h4>
             <p class="boleto__plan">Presencial</p>
             <p class="boleto__precio">199</p>
@@ -182,7 +182,8 @@ include_once __DIR__ . '/conferencias.php';
         <!-- !section  fin - presencial[fin] -->
 
         <!-- section1  Virtual[inicio] -->
-        <div class="boleto boleto--virtual">
+        <div <?= aos_animacion() ?>
+             class="boleto boleto--virtual">
             <h4 class="boleto__logo">&#60;DevWebCamp /></h4>
             <p class="boleto__plan">Virtual</p>
             <p class="boleto__precio">49</p>
@@ -190,7 +191,8 @@ include_once __DIR__ . '/conferencias.php';
         <!-- !section1  fin - Virtual[fin] -->
 
         <!-- section2  Gratis[inicio] -->
-        <div class="boleto boleto--gratis">
+        <div <?= aos_animacion() ?>
+             class="boleto boleto--gratis">
             <h4 class="boleto__logo">&#60;DevWebCamp /></h4>
             <p class="boleto__plan">Gratis</p>
             <p class="boleto__precio">Gratis - $0</p>
