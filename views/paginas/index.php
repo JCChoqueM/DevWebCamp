@@ -161,3 +161,41 @@ include_once __DIR__ . '/conferencias.php';
      class="mapa">
 
 </div>
+
+<section class="boletos">
+    <h2 class="boletos__heading">Boletos & Precios</h2>
+    <p class="boletos__descripcion">Precios para DevWebCam</p>
+
+
+    <div class="boletos__grid">
+        <!-- section  presencial[inicio] -->
+        <div class="boleto boleto--presencial">
+            <h4 class="boleto__logo">&#60;DevWebCamp /></h4>
+            <p class="boleto__plan">Presencial</p>
+            <p class="boleto__precio">199</p>
+        </div>
+        <!-- !section  fin - presencial[fin] -->
+
+        <!-- section1  Virtual[inicio] -->
+        <div class="boleto boleto--virtual">
+            <h4 class="boleto__logo">&#60;DevWebCamp /></h4>
+            <p class="boleto__plan">Virtual</p>
+            <p class="boleto__precio">49</p>
+        </div>
+        <!-- !section1  fin - Virtual[fin] -->
+
+        <!-- section2  Gratis[inicio] -->
+        <div class="boleto boleto--gratis">
+            <h4 class="boleto__logo">&#60;DevWebCamp /></h4>
+            <p class="boleto__plan">Gratis</p>
+            <p class="boleto__precio">Gratis - $0</p>
+        </div>
+        <!-- !section2  fin - Gratis[fin] -->
+    </div>
+
+    <div class="boleto__enlace-contenedor">
+        <a href="/paquetes"
+           class="boleto__enlace">Ver Paquetes</a>
+
+    </div>
+</section>
