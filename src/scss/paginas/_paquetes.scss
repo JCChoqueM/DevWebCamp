@@ -11,8 +11,9 @@
       align-items: flex-start;
     }
   }
-  &__texto {
-    line-height: 2;
+  &__submit {
+    margin-top: 3rem;
+    @include m.boton(v.$azul, v.$blanco);
   }
 }
 .paquete {

@@ -17,4 +17,18 @@ class RegistroController
         ]);
     }
 
+    public static function gratis(Router $router)
+    {
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+            if (!is_auth()) {
+                header('Location: /login');
+            }
+            $token = substr(md5(uniqid(rand(), true)), 0, 8);
+            debuguear($token);
+
+        }
+    }
+
 }
