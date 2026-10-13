@@ -11,6 +11,7 @@ use Controllers\PaginasController;
 use Controllers\PonentesController;
 use Controllers\RegalosController;
 use Controllers\RegistradosController;
+use Controllers\RegistroController;
 use MVC\Router;
 
 
@@ -73,6 +74,11 @@ $router->get('/admin/registrados', [RegistradosController::class, 'index']);
 
 
 $router->get('/admin/regalos', [RegalosController::class, 'index']);
+
+
+//Registro de Usuarios
+$router->get('/finalizar-registro', [RegistroController::class, 'crear']);
+
 
 //Área publica
 $router->get('/', [PaginasController::class, 'index']);
