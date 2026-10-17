@@ -5,13 +5,18 @@ namespace Model;
 class Registro extends ActiveRecord
 {
     protected static $tabla = 'registros';
-    protected static $columnasDB = ['id', 'paquete_id', 'pago_id', 'token', 'usuario_id',];
+    protected static $columnasDB = ['id', 'paquete_id', 'pago_id', 'token', 'usuario_id', 'regalo_id'];
 
     public $id;
     public $paquete_id;
     public $pago_id;
     public $token;
     public $usuario_id;
+    public $regalo_id;
+
+    // Propiedades de referencia (no son columnas de la BD)
+    public $usuario;
+    public $paquete;
 
     public function __construct($args = [])
     {
@@ -20,6 +25,6 @@ class Registro extends ActiveRecord
         $this->pago_id = $args['pago_id'] ?? '';
         $this->token = $args['token'] ?? '';
         $this->usuario_id = $args['usuario_id'] ?? '';
+        $this->regalo_id = $args['regalo_id'] ?? '';
     }
-
 }
