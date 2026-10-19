@@ -89,7 +89,7 @@
     </div>
 </main>
 
-<script src="https://www.paypal.com/sdk/js?client-id=Adc6YGqAvfmtD_7WCDB9mf3AidMfM18ZQr49mGkIHEOF8XuFTW7aAMFuB09wVfMsKy54lOoFfpWqL3HS&enable-funding=venmo&currency=USD"
+<script src="https://www.paypal.com/sdk/js?client-id=AY9CGnFuZW3hswuSexG3uQ4ilVbj2_Vbgjo6cxu8L9z8HdPHOfZ8YBQGlQes8E9p9r9Fg9ZuzgGJLCUV&enable-funding=venmo&currency=USD"
         data-sdk-integration-source="button-factory"></script>
 
 <script>
