@@ -42,6 +42,11 @@
     </main>
 
     <aside class="registro">
-        <h1 class="registro__heading">Tu Registro</h1>
+        <h2 class="registro__heading">Tu Registro</h2>
+
+        <div id="registro-resumen"
+             class="registro__resumen">
+
+        </div>
     </aside>
 </div>
