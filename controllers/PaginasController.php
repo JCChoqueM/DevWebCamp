@@ -71,6 +71,7 @@ class PaginasController
     public static function conferencias(Router $router)
     {
         $eventos = Evento::ordenar('hora_id', 'ASC');
+        
         $eventos_formateados = [];
 
         foreach ($eventos as $evento) {
@@ -93,10 +94,6 @@ class PaginasController
                 $eventos_formateados['workshops_s'][] = $evento;
             }
         }
-
-
-
-
 
 
         $router->render('paginas/conferencias', [
