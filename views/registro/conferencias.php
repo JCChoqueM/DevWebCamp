@@ -4,6 +4,7 @@
 <div class="eventos-registro">
 
     <main class="eventos-registro__listado">
+        <!-- SECTION  part1[inicio] -->
         <h3 class="eventos-registro__heading--conferencias">&lt;Conferencias /></h3>
         <p class="eventos-registro__fecha">Viernes 5 de Octubre</p>
 
@@ -12,6 +13,31 @@
                 <?php include __DIR__ . '/evento.php' ?>
             <?php } ?>
         </div>
+        <p class="eventos-registro__fecha">Sabado 6 de Octubre</p>
+        <div class="eventos-registro__grid">
+            <?php foreach ($eventos['conferencias_s'] as $evento) { ?>
+                <?php include __DIR__ . '/evento.php' ?>
+            <?php } ?>
+        </div>
+        <!-- !SECTION  fin - part1[fin] -->
+
+        <!-- SECTION1 part2[inicio] -->
+        <h3 class="eventos-registro__heading--workshops">&lt;Workshops /></h3>
+        <p class="eventos-registro__fecha">Viernes 5 de Octubre</p>
+
+        <div class="eventos-registro__grid eventos--workshops">
+            <?php foreach ($eventos['workshops_v'] as $evento) { ?>
+                <?php include __DIR__ . '/evento.php' ?>
+            <?php } ?>
+        </div>
+        <p class="eventos-registro__fecha">Sabado 6 de Octubre</p>
+        <div class="eventos-registro__grid eventos--workshops">
+            <?php foreach ($eventos['workshops_s'] as $evento) { ?>
+                <?php include __DIR__ . '/evento.php' ?>
+            <?php } ?>
+        </div>
+        <!-- !SECTION1 fin - part2[fin] -->
+
 
     </main>
 
