@@ -6,18 +6,20 @@
   eventosBoton.forEach((boton) => boton.addEventListener('click', seleccionarEvento));
 
   function seleccionarEvento({ target }) {
-    //Deshabilitar el boton
-
-    target.disabled = true;
-    eventos = [
-      ...eventos,
-      {
-        id: target.dataset.id,
-        titulo: target.parentElement.querySelector('.evento__nombre').textContent.trim(),
-      },
-    ];
-
-    mostrarEventos();
+    if (eventos.length < 5) {
+      //Deshabilitar el boton
+      target.disabled = true;
+      eventos = [
+        ...eventos,
+        {
+          id: target.dataset.id,
+          titulo: target.parentElement.querySelector('.evento__nombre').textContent.trim(),
+        },
+      ];
+      mostrarEventos();
+    } else {
+      alert('Solo un máximo de 5 eventos');
+    }
   }
 
   function mostrarEventos() {
@@ -48,7 +50,10 @@
   }
 
   function eliminarEvento(id) {
-    console.log(id);
+    eventos = eventos.filter((evento) => evento.id !== id);
+    const botonAgregar = document.querySelector(`[data-id="${id}"]`);
+    botonAgregar.disabled = false;
+    mostrarEventos();
   }
 
   function limpiarEventos() {
