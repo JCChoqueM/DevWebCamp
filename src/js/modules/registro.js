@@ -1,3 +1,5 @@
+import Swal from 'sweetalert2';
+
 (function () {
   let eventos = [];
 
@@ -18,7 +20,12 @@
       ];
       mostrarEventos();
     } else {
-      alert('Solo un máximo de 5 eventos');
+      Swal.fire({
+        title: 'Error',
+        text: 'Máximo 5 eventos por registro',
+        icon: 'error',
+        confirmButtonText: 'Aceptar',
+      })
     }
   }
 
