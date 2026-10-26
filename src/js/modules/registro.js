@@ -99,7 +99,7 @@ import Swal from 'sweetalert2';
 
       //Objetos de formadata
       const datos = new FormData();
-      datos.append('eventos', (eventosId));
+      datos.append('eventos', eventosId);
       datos.append('regalo_id', regaloId);
 
       const url = '/finalizar-registro/conferencias';
@@ -108,7 +108,21 @@ import Swal from 'sweetalert2';
         body: datos,
       });
       const resultado = await respuesta.json();
-      console.log(resultado);
+
+      if (resultado.resultado) {
+        Swal.fire(
+          'Registro Exitoso',
+          'Tus conferencias se han almacenado y tu registro fue exitoso, te esperamos en DevWebCamp',
+          'success',
+        ).then(() => (location.href = `/boleto?id=${resultado.token}`));
+      } else {
+        Swal.fire({
+          title: 'Error',
+          text: 'Hubo un error',
+          icon: 'error',
+          confirmButtonText: 'OK',
+        }).then(()=>location.reload());
+      }
     }
   }
 })();
