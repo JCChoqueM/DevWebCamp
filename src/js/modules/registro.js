@@ -11,6 +11,8 @@ import Swal from 'sweetalert2';
     const formularioRegistro = document.querySelector('#registro');
     formularioRegistro.addEventListener('submit', submitFormulario);
 
+    mostrarEventos();
+
     function seleccionarEvento({ target }) {
       if (eventos.length < 5) {
         //Deshabilitar el boton
@@ -57,6 +59,11 @@ import Swal from 'sweetalert2';
           eventoDOM.appendChild(botonEliminar);
           resumen.appendChild(eventoDOM);
         });
+      } else {
+        const noRegistro = document.createElement('P');
+        noRegistro.textContent = 'No hay eventos, añade hasta 5 del lado izquierdo';
+        noRegistro.classList.add('registro__texto');
+        resumen.appendChild(noRegistro);
       }
     }
 
@@ -72,7 +79,7 @@ import Swal from 'sweetalert2';
         resumen.removeChild(resumen.firstChild);
       }
     }
-    function submitFormulario(e) {
+    async function submitFormulario(e) {
       e.preventDefault();
 
       //Obtener el regalo
@@ -83,13 +90,25 @@ import Swal from 'sweetalert2';
       if (eventosId.length === 0 || regaloId === '') {
         Swal.fire({
           title: 'Error',
-          text: 'Debes elegir al menos un evento y un regalo',
+          text: 'Elige al menos un Evento y un Regalo',
           icon: 'error',
-          confirmButtonText: 'Aceptar',
+          confirmButtonText: 'OK',
         });
         return;
       }
-      console.log('registrando...');
+
+      //Objetos de formadata
+      const datos = new FormData();
+      datos.append('eventos', (eventosId));
+      datos.append('regalo_id', regaloId);
+
+      const url = '/finalizar-registro/conferencias';
+      const respuesta = await fetch(url, {
+        method: 'POST',
+        body: datos,
+      });
+      const resultado = await respuesta.json();
+      console.log(resultado);
     }
   }
 })();
