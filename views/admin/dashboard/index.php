@@ -2,10 +2,11 @@
 
 <main class="bloques">
     <div class="bloques__grid">
+        <!-- SECTION  ultimos registros[inicio] -->
         <div class="bloque">
             <h3 class="bloque__heading">Últimos Registros</h3>
 
-            <?php foreach($registros as $registro) { ?>
+            <?php foreach ($registros as $registro) { ?>
                 <div class="bloque__contenido">
                     <p class="bloque__texto">
                         <?php echo $registro->usuario->nombre . " " . $registro->usuario->apellido; ?>
@@ -13,32 +14,43 @@
                 </div>
             <?php } ?>
         </div>
+        <!-- !SECTION  fin - ultimos registros[fin] -->
 
+        <!-- SECTION1 ingresos[inicio] -->
         <div class="bloque">
             <h3 class="bloque__heading">Ingresos</h3>
-            <p class="bloque__texto--cantidad">$ <?php echo $ingresos; ?></p>
-        </div>
 
+            <p class="bloque__texto--cantidad">
+                <?= $ingresos ?>
+            </p>
+        </div>
+        <!-- !SECTION1 fin - ingresos[fin] -->
+
+        <!-- SECTION2 menos_disponibles[inicio] -->
         <div class="bloque">
-            <h3 class="bloque__heading">Eventos Con Menos Lugares Disponibles</h3>
-            <?php foreach($menos_disponibles as $evento) { ?>
+            <h3 class="bloque__heading">Eventos con menos lugares disponibles</h3>
+            <?php foreach ($menos_disponibles as $evento) { ?>
                 <div class="bloque__contenido">
                     <p class="bloque__texto">
                         <?php echo $evento->nombre . " - " . $evento->disponibles . ' Disponibles'; ?>
                     </p>
                 </div>
             <?php } ?>
-        </div>
 
+        </div>
+        <!-- !SECTION2 fin - menos_disponibles[fin] -->
+        <!-- SECTION3 mas_disponibles[inicio] -->
         <div class="bloque">
-            <h3 class="bloque__heading">Eventos Con Más Lugares Disponibles</h3>
-            <?php foreach($mas_disponibles as $evento) { ?>
+            <h3 class="bloque__heading">Eventos con menos lugares disponibles</h3>
+            <?php foreach ($menos_disponibles as $evento) { ?>
                 <div class="bloque__contenido">
                     <p class="bloque__texto">
                         <?php echo $evento->nombre . " - " . $evento->disponibles . ' Disponibles'; ?>
                     </p>
                 </div>
             <?php } ?>
+
         </div>
+        <!-- !SECTION3 fin - mas_disponibles[fin] -->
     </div>
 </main>

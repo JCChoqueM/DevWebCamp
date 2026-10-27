@@ -122,6 +122,16 @@ class ActiveRecord
         $resultado = self::consultarSQL($query);
         return $resultado;
     }
+    //Retornar los registros por un orden
+    /**
+     * @return static[]
+     */
+    public static function ordenarLimite($columna, $orden, $limite)
+    {
+        $query = "SELECT * FROM " . static::$tabla . " ORDER BY {$columna} {$orden} LIMIT {$limite}";
+        $resultado = self::consultarSQL($query);
+        return $resultado;
+    }
 
     //Busqueda Where con Múltiples opciones
     /**
