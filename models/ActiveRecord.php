@@ -79,7 +79,7 @@ class ActiveRecord
     {
         $query = "SELECT * FROM " . static::$tabla . " ORDER BY id DESC LIMIT {$limite}";
         $resultado = self::consultarSQL($query);
-        return array_shift($resultado);
+        return $resultado;
     }
 
 
