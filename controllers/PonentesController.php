@@ -14,7 +14,9 @@ class PonentesController
     /* SECTION index + Paginacion[inicio] */
     public static function index(Router $router)
     {
-
+        if (!is_admin()) {
+            header('Location: /login');
+        }
         $pagina_actual = $_GET['page'] ?? '';
         $pagina_actual = filter_var($pagina_actual, FILTER_VALIDATE_INT);
 
@@ -34,9 +36,7 @@ class PonentesController
 
 
 
-        if (!is_admin()) {
-            header('Location: /login');
-        }
+
 
         $router->render('admin/ponentes/index', [
             'titulo' => 'Ponentes / Conferencistas',
@@ -200,10 +200,10 @@ class PonentesController
 
     public static function eliminar()
     {
-        
+
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            
+
             if (!is_admin()) {
                 header('Location: /login');
             }
