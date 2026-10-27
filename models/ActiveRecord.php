@@ -73,7 +73,7 @@ class ActiveRecord
 
     // Obtener Registro
     /**
-     * @return static|false
+     * @return static[]
      */
     public static function get($limite)
     {
