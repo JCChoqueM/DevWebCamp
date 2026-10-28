@@ -29,13 +29,13 @@
                 <?php foreach ($registros as $registro) { ?>
                     <tr class="table__tr">
                         <td class="table__td">
-                            <?= $registro->usuario->nombre . " " . $registro->usuario->apellido; ?>
+                            <?= ($registro->usuario->nombre ?? '') . " " . ($registro->usuario->apellido ?? ''); ?>
                         </td>
                         <td class="table__td">
-                             <?= $registro->usuario->email?>
+                             <?= $registro->usuario->email ?? ''; ?>
                         </td>
                         <td class="table__td">
-                             <?= $registro->paquete->nombre?>
+                             <?= $registro->paquete->nombre ?? ''; ?>
                         </td>
 
                     </tr>

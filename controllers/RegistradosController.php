@@ -35,8 +35,8 @@ class RegistradosController
 
         $registros = Registro::paginar($registros_por_pagina, $paginacion->offset());
         foreach ($registros as $registro) {
-            $registro->usuario = Usuario::find($registro->id);
-            $registro->paquete = Paquete::find($registro->id);
+            $registro->usuario = Usuario::find($registro->usuario_id);
+            $registro->paquete = Paquete::find($registro->paquete_id);
         }
 
 
