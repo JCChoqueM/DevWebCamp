@@ -13,6 +13,7 @@ class Regalo extends ActiveRecord
     // Propiedades de referencia (no son columnas de la BD)
     public $usuario;
     public $paquete;
+    public $total;
 
     public function __construct($args = [])
     {

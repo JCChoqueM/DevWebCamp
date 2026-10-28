@@ -175,7 +175,32 @@ class ActiveRecord
         return array_shift($total);
 
     }
+    //Total de registros con un array where
 
+    public static function totalArray($array = [])
+    {
+        $query = "SELECT COUNT(*) FROM " . static::$tabla . " WHERE ";
+
+         foreach ($array as $key => $value) {
+
+            if ($key == array_key_last($array)) {
+
+                $query .= " {$key} = '{$value}'";
+            } else {
+                $query .= " {$key} = '{$value}' AND ";
+
+            }
+
+        }
+
+       
+
+        $resultado = self::$db->query($query);
+        $total = $resultado->fetch_array();
+
+        return array_shift($total);
+
+    }
 
     //Busca todos los registros que pertenecen a un ID
     /**

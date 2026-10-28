@@ -128,7 +128,7 @@ DevWebCamp/
 | Backend | PHP 8+, Composer (ActiveRecord pattern) |
 | Frontend | Vite 5, SCSS/Sass, JavaScript ES6+ (ES modules) |
 | Base de datos | MySQL (PDO), Docker |
-| Frontend libs | Swiper 14, Leaflet.js (mapas), AOS 2.3.1 (CDN) |
+| Frontend libs | Swiper 14, Leaflet.js (mapas), AOS 2.3.1 (CDN), Chart.js 4.6.1 (CDN) |
 | Estilos | SCSS modular, 40+ archivos parciales |
 | Email | PHPMailer (SMTP Mailtrap) |
 
@@ -136,25 +136,33 @@ DevWebCamp/
 
 ## 🐛 Corrección aplicada: Chart.js en /admin/regalos
 
-### Problemas encontrados
+### Problemas encontrados y solucionados
 1. **Vite no cargaba `regalos.js`**: El archivo fue creado después de que Vite
    iniciara, y el glob cache no lo incluía. Solución: reiniciar el servidor Vite.
 2. **`regalos.js` sin guardián nulo**: El módulo se ejecuta en todas las páginas
    (via `import.meta.glob` eager), lanzando `new Chart(null, ...)` en páginas
-   sin `#myChart`. Solución: agregar `if (!ctx) return;` (igual que `ponentes.js`,
-   `horas.js`, etc.).
+   sin el canvas. Solución: el guardián `if(grafica)` evita la ejecución
+   en páginas que no tienen `#regalos-grafica`.
 3. **CSP bloqueaba Chart.js**: El CSP en `docker/apache.conf` no incluía
    `https://cdnjs.cloudflare.com` en `script-src`. Solución: agregado a la
-   directiva `script-src`.
+   directiva `script-src` y recargado Apache.
 4. **URL de Chart.js incorrecta**: `chart.min.js` en cdnjs sirve la versión ESM
    (con `import`), incompatible con `<script>` clásicos. Solución: cambiar a
    `chart.umd.min.js` (versión UMD, compatible con `<script>` clásicos) y actualizar
    el hash de integridad SRI.
+5. **Endpoint `/api/regalos` inexistente**: `regalos.js` hace `fetch('/api/regalos')`
+   pero la ruta no estaba registrada. Solución: crear `APIRegalos.php` controlador
+   y registrar la ruta en `public/index.php`.
 
 ### Archivos modificados
 - `views/admin-layout.php` — Chart.js URL → `chart.umd.min.js` + nuevo hash SRI
-- `src/js/modules/regalos.js` — guardián nulo `if (!ctx) return;`
 - `docker/apache.conf` — `https://cdnjs.cloudflare.com` agregado a `script-src`
+- `src/js/modules/regalos.js` — código actualizado: canvas `#regalos-grafica`,
+  `fetch` a API, guardián `if(grafica)`, datos dinámicos
+- `models/Regalo.php` — agregada propiedad `$total` para el mapeo de objetos
+- `controllers/APIRegalos.php` — **nuevo** — endpoint que retorna regalos con
+  su conteo de registros (`nombre` + `total`)
+- `public/index.php` — registrada ruta `GET /api/regalos`
 
 ## 📌 Tareas pendientes / por hacer
 - (Ninguna actualmente)

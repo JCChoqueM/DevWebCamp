@@ -7,6 +7,8 @@
                 const respuesta = await fetch(url)
                 const resultado = await respuesta.json()
 
+          
+
                 const ctx = document.getElementById('regalos-grafica').getContext('2d');
                 const myChart = new Chart(ctx, {
                     type: 'bar',
