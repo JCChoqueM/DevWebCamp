@@ -16,45 +16,29 @@ if (!$isDev) {
 
 <head>
     <meta charset="UTF-8">
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
     <title>DevWebCamp - <?= $titulo ?? ''; ?></title>
-    <link
-        rel="preconnect"
-        href="https://fonts.googleapis.com"
-    >
-    <link
-        rel="preconnect"
-        href="https://fonts.gstatic.com"
-        crossorigin
-    >
-    <link
-        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700;900&display=swap"
-        rel="stylesheet"
-    >
-    <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
-        integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
-        crossorigin="anonymous"
-        referrerpolicy="no-referrer"
-    />
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700;900&display=swap"
+          rel="stylesheet">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
+          integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer" />
     <?php if ($isDev): ?>
-        <script
-            type="module"
-            src="http://localhost:5174/@vite/client"
-        ></script>
-        <link
-            rel="stylesheet"
-            href="http://localhost:5174/src/scss/app.scss"
-        >
+        <script type="module"
+                src="http://localhost:5174/@vite/client"></script>
+        <link rel="stylesheet"
+              href="http://localhost:5174/src/scss/app.scss">
     <?php else: ?>
-        <link
-            rel="stylesheet"
-            href="/build/<?= $manifest['src/scss/app.scss']['file'] ?? '' ?>"
-        >
+        <link rel="stylesheet"
+              href="/build/<?= $manifest['src/scss/app.scss']['file'] ?? '' ?>">
     <?php endif ?>
 </head>
 
@@ -68,17 +52,17 @@ if (!$isDev) {
             <?= $contenido ?? ''; ?>
         </main>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.6.1/chart.umd.min.js"
+            integrity="sha512-vMRyUfXe50uUhhDC+fk6UYBA/1VPj+I7Jn+wK0A3+wSVeUgT9OCz/xoF2M8KFvrmUOlb4Anv0FQUw8NafuzYPw=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"></script>
 
     <?php if ($isDev): ?>
-        <script
-            type="module"
-            src="http://localhost:5174/src/js/app.js"
-        ></script>
+        <script type="module"
+                src="http://localhost:5174/src/js/app.js"></script>
     <?php else: ?>
-        <script
-            src="/build/<?= $manifest['src/js/app.js']['file'] ?? '' ?>"
-            defer
-        ></script>
+        <script src="/build/<?= $manifest['src/js/app.js']['file'] ?? '' ?>"
+                defer></script>
     <?php endif ?>
 </body>
 

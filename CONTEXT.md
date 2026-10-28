@@ -134,5 +134,27 @@ DevWebCamp/
 
 ---
 
+## 🐛 Corrección aplicada: Chart.js en /admin/regalos
+
+### Problemas encontrados
+1. **Vite no cargaba `regalos.js`**: El archivo fue creado después de que Vite
+   iniciara, y el glob cache no lo incluía. Solución: reiniciar el servidor Vite.
+2. **`regalos.js` sin guardián nulo**: El módulo se ejecuta en todas las páginas
+   (via `import.meta.glob` eager), lanzando `new Chart(null, ...)` en páginas
+   sin `#myChart`. Solución: agregar `if (!ctx) return;` (igual que `ponentes.js`,
+   `horas.js`, etc.).
+3. **CSP bloqueaba Chart.js**: El CSP en `docker/apache.conf` no incluía
+   `https://cdnjs.cloudflare.com` en `script-src`. Solución: agregado a la
+   directiva `script-src`.
+4. **URL de Chart.js incorrecta**: `chart.min.js` en cdnjs sirve la versión ESM
+   (con `import`), incompatible con `<script>` clásicos. Solución: cambiar a
+   `chart.umd.min.js` (versión UMD, compatible con `<script>` clásicos) y actualizar
+   el hash de integridad SRI.
+
+### Archivos modificados
+- `views/admin-layout.php` — Chart.js URL → `chart.umd.min.js` + nuevo hash SRI
+- `src/js/modules/regalos.js` — guardián nulo `if (!ctx) return;`
+- `docker/apache.conf` — `https://cdnjs.cloudflare.com` agregado a `script-src`
+
 ## 📌 Tareas pendientes / por hacer
-- (Ninguna actualmente — contexto iniciado después de corrección AOS)
+- (Ninguna actualmente)
